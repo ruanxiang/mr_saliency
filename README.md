@@ -32,7 +32,7 @@ The code is not very sensitive to version of libraries used ( I think, :-)), so 
   There are two classes you can use. One is MR_saliency which is the implementation of manifold ranking saliency. Simply
 
         import MR
-		mr = MR() # initialization
+		mr = MR.MR_saliency() # initialization
 		sal = mr.saliency(img)
 		
   I leave all the parameters open to manipulating, you can set your own parameters during initializing the class. However, you don't have to do it, default values work pretty well, unless you really know what you want to do.[^1]
