@@ -27,6 +27,11 @@ The code is not very sensitive to version of libraries used ( I think, :-)), so 
   
   
 # Usage #
+  * [xkungly version 0.0.1] converted to pip installer.
+  After git clone 
+  cd mr_saliency
+  pip install .
+  Syntax of original command is unchanged
 
   * MR.py
   There are two classes you can use. One is MR_saliency which is the implementation of manifold ranking saliency. Simply
