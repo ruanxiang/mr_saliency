@@ -27,12 +27,21 @@ import scipy as sp
 import sys
 
 capture = cv2.VideoCapture(0)
-capture.set(cv2.cv.CV_CAP_PROP_FRAME_WIDTH,320)
-capture.set(cv2.cv.CV_CAP_PROP_FRAME_HEIGHT,240)
+
+if MR.cv_ver >= 3: 
+    capture.set(cv2.CAP_PROP_FRAME_WIDTH,320)
+    capture.set(cv2.CAP_PROP_FRAME_HEIGHT,240)
+else:
+    capture.set(cv2.cv.CV_CAP_PROP_FRAME_WIDTH,320)
+    capture.set(cv2.cv.CV_CAP_PROP_FRAME_HEIGHT,240)
 
 capture2 = cv2.VideoCapture(0)
-capture2.set(cv2.cv.CV_CAP_PROP_FRAME_WIDTH,320)
-capture2.set(cv2.cv.CV_CAP_PROP_FRAME_HEIGHT,240)
+if MR.cv_ver >= 3:
+    capture2.set(cv2.CAP_PROP_FRAME_WIDTH,320)
+    capture2.set(cv2.CAP_PROP_FRAME_HEIGHT,240)
+else:
+    capture2.set(cv2.cv.CV_CAP_PROP_FRAME_WIDTH,320)
+    capture2.set(cv2.cv.CV_CAP_PROP_FRAME_HEIGHT,240)
 
 global mr_sal
 mr_sal = MR.MR_saliency()

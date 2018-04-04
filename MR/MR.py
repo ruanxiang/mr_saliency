@@ -29,10 +29,12 @@ import numpy as np
 import cv2
 from skimage.segmentation import slic
 from skimage.segmentation import mark_boundaries
-from skimage.data import lena
+from skimage.data import camera
 from scipy.linalg import inv
 import matplotlib.pyplot as plt
 
+cv_ver = int(cv2.__version__.split('.')[0])
+_cv2_LOAD_IMAGE_COLOR = cv2.IMREAD_COLOR if cv_ver >= 3 else cv2.CV_LOAD_IMAGE_COLOR
 
 class MR_saliency(object):
     """Python implementation of manifold ranking saliency"""
@@ -170,16 +172,16 @@ class MR_saliency(object):
 
         for i in range(labels.shape[0] - 1):
             for j in range(labels.shape[1] - 1):
-                if labels[i, j]<>labels[i+1, j]:
+                if labels[i, j] != labels[i+1, j]:
                     adj[labels[i, j],       labels[i+1, j]]              = False
                     adj[labels[i+1, j],   labels[i, j]]                  = False
-                if labels[i, j]<>labels[i, j + 1]:
+                if labels[i, j] != labels[i, j + 1]:
                     adj[labels[i, j],       labels[i, j+1]]              = False
                     adj[labels[i, j+1],   labels[i, j]]                  = False
-                if labels[i, j]<>labels[i + 1, j + 1]:
+                if labels[i, j] != labels[i + 1, j + 1]:
                     adj[labels[i, j]        ,  labels[i+1, j+1]]       = False
                     adj[labels[i+1, j+1],  labels[i, j]]               = False
-                if labels[i + 1, j]<>labels[i, j + 1]:
+                if labels[i + 1, j] != labels[i, j + 1]:
                     adj[labels[i+1, j],   labels[i, j+1]]              = False
                     adj[labels[i, j+1],   labels[i+1, j]]              = False
         
@@ -237,7 +239,7 @@ class MR_saliency(object):
     # read image
     def __MR_readimg(self,img):
         if isinstance(img,str): # a image path
-            img = cv2.imread(img,cv2.CV_LOAD_IMAGE_COLOR)
+            img = cv2.imread(img, _cv2_LOAD_IMAGE_COLOR)
             # img = cv2.cvtColor(img,cv2.COLOR_BGR2RGB).astype(float)/255
         # img = cv2.cvtColor(img,cv2.COLOR_BGR2LAB).astype(float)/255
         img = cv2.cvtColor(img,cv2.COLOR_RGB2LAB).astype(float)/255
@@ -249,7 +251,7 @@ class MR_saliency(object):
 class MR_debuger(MR_saliency):
     def MR_showsuperpixel(self,img=None):
         if img == None:
-            img = cv2.cvtColor(lena(),cv2.COLOR_RGB2BGR)
+            img = cv2.cvtColor(camera(),cv2.COLOR_RGB2BGR)
         img = self._MR_saliency__MR_readimg(img)
         labels = self._MR_saliency__MR_superpixel(img)
 
@@ -259,7 +261,7 @@ class MR_debuger(MR_saliency):
 
     def MR_boudnary_extraction(self,img=None):
         if img == None:
-            img = cv2.cvtColor(lena(),cv2.COLOR_RGB2BGR)
+            img = cv2.cvtColor(camera(),cv2.COLOR_RGB2BGR)
         lab_img = self._MR_saliency__MR_readimg(img)
         mark_color = (1,0,0)
         labels = self._MR_saliency__MR_superpixel(lab_img)
@@ -323,7 +325,7 @@ class MR_debuger(MR_saliency):
 
     def MR_boundary_saliency(self,img=None):
         if img == None:
-            img = cv2.cvtColor(lena(),cv2.COLOR_RGB2BGR)
+            img = cv2.cvtColor(camera(),cv2.COLOR_RGB2BGR)
         lab_img = self._MR_saliency__MR_readimg(img)
     
         labels = self._MR_saliency__MR_superpixel(lab_img)
