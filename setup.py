@@ -1,5 +1,5 @@
 """setup for mr_saliency to enable pip install"""
-import os, sys
+
 from setuptools import setup, find_packages
 
 def readme():
@@ -19,11 +19,12 @@ def setup_package():
         name='MR',
         version=readversion(),
         description='implementation of mr_saliency',
-        url='https://github.com/xkunglu/mr_saliency',
-        author='xkunglu -forked from ruanxiang',
-        author_email='xkunglu@gmail.com',
+        url='https://github.com/ruanxiang/mr_saliency',
+        author='ruanxiang (xkunglu added installer and py3 port)',
         license='GPL2',
-        dependency_links=['cv2', 'numpy', 'skimage', 'matplotlib', 'scipy', 'wxPython'],
+        dependency_links=['wxPython'],
+        install_requires=['opencv-python', 'numpy',
+                          'scikit-image', 'matplotlib', 'scipy'],
         packages=find_packages(),
         long_description=readme(),
         zip_safe=True)
