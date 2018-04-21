@@ -15,8 +15,11 @@
 ## A python implementation of manifold ranking saliency
 ## Usage:
 ##      import MR
+##      import matplotlib.pyplot as plt
 ##      mr = MR.MR_saliency()
 ##      sal = mr.saliency(img)
+##      plt.imshow(sal)
+##      plt.show()
 ##
 ## Check paper.pdf for algorithm details 
 ## I leave all th parameters open to maniplating, however, you don't
@@ -240,8 +243,6 @@ class MR_saliency(object):
     def __MR_readimg(self,img):
         if isinstance(img,str): # a image path
             img = cv2.imread(img, _cv2_LOAD_IMAGE_COLOR)
-            # img = cv2.cvtColor(img,cv2.COLOR_BGR2RGB).astype(float)/255
-        # img = cv2.cvtColor(img,cv2.COLOR_BGR2LAB).astype(float)/255
         img = cv2.cvtColor(img,cv2.COLOR_RGB2LAB).astype(float)/255
         h = 100
         w = int(float(h)/float(img.shape[0])*float(img.shape[1]))
