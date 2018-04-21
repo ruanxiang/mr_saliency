@@ -23,6 +23,14 @@ The program is tested on both Linux ( debian Jessie) and Mac OS ( El Capitan 10.
   The installer should install all dependencies. With one exception, wxPython ( curr version 4.0.1) fails to build wheel, on Ubuntu 16.0.4 therefore it needs to be installed separately. If you are using this within a conda environment the conda install works:
   
   $ conda install -c anaconda wxpython
+  
+  For Mac user, you can install wxpython by brew
+  
+  $ brew install wxpython
+  
+  If you are using python under virtual environment such as pyenv, you may have problem in using wxpython, get error message like: "This program needs access to the screen. Please run with a Framework build of python, ..". No worry, reinstall your current python under pyenv by
+  
+  $ env PYTHON_CONFIGURE_OPTS="--enable-framework" pyenv install x.x.x
 
 # Dependencies  #
 
