@@ -56,9 +56,9 @@ The code is not very sensitive to version of libraries used ( I think, :-)), so 
 	$ python
     >>> import MR
     >>> import matplotlib.pyplot as plt
-		>>> mr = MR.,. # initialization
-		>>> sal = mr.saliency(<valid image path>)
-    >>> plt.imshow(sal)
+    >>> mr = MR.MR_saliency() # initialization
+	>>> sal = mr.saliency(<valid image path>)
+    >>> plt.imshow(sal,cmap='gray') # if you want to see result in gray mode
     >>> plt.show()
 	``` 
   I leave all the parameters open to manipulating, you can set your own parameters during initializing the class. However, you don't have to do it, default values work pretty well, unless you really know what you want to do.[^1]
