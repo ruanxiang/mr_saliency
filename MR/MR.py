@@ -6,7 +6,7 @@
 ## License:
 ##       GPL 2.0
 ##       NOTE: the algorithm itself is patented by OMRON, co, Japan
-##             my employer, so please do not use the algorithm in
+##             my previous employer, so please do not use the algorithm in
 ##             any commerical product
 ## Version:
 ##       1.0
@@ -143,20 +143,20 @@ class MR_saliency(object):
 
     def __MR_boundary_indictor(self,labels):
         s = sp.amax(labels)+1
-        up_indictor = (sp.zeros((s,1))).astype(float)
-        right_indictor = (sp.zeros((s,1))).astype(float)
-        low_indictor = (sp.zeros((s,1))).astype(float)
-        left_indictor = (sp.zeros((s,1))).astype(float)
+        up_indictor = (sp.ones((s,1))).astype(float)
+        right_indictor = (sp.ones((s,1))).astype(float)
+        low_indictor = (sp.ones((s,1))).astype(float)
+        left_indictor = (sp.ones((s,1))).astype(float)
     
         upper_ids = sp.unique(labels[0,:]).astype(int)
         right_ids = sp.unique(labels[:,labels.shape[1]-1]).astype(int)
         low_ids = sp.unique(labels[labels.shape[0]-1,:]).astype(int)
         left_ids = sp.unique(labels[:,0]).astype(int)
 
-        up_indictor[upper_ids] = 1.0
-        right_indictor[right_ids] = 1.0
-        low_indictor[low_ids] = 1.0
-        left_indictor[left_ids] = 1.0
+        up_indictor[upper_ids] = 0.0
+        right_indictor[right_ids] = 0.0
+        low_indictor[low_ids] = 0.0
+        left_indictor[left_ids] = 0.0
 
         return up_indictor,right_indictor,low_indictor,left_indictor
 

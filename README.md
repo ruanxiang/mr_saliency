@@ -52,14 +52,15 @@ The code is not very sensitive to version of libraries used ( I think, :-)), so 
   * MR.py
   There are two classes you can use. One is MR_saliency which is the implementation of manifold ranking saliency. 
 
-    $ python
+    ```
+	$ python
     >>> import MR
     >>> import matplotlib.pyplot as plt
 		>>> mr = MR.,. # initialization
 		>>> sal = mr.saliency(<valid image path>)
     >>> plt.imshow(sal)
     >>> plt.show()
-	
+	``` 
   I leave all the parameters open to manipulating, you can set your own parameters during initializing the class. However, you don't have to do it, default values work pretty well, unless you really know what you want to do.[^1]
   
   Another class is a helper class help to show some calculation results such as superpixels, boundary priors and so on. It is very easy to understand the functionality, go check the source code
@@ -74,7 +75,7 @@ The code is not very sensitive to version of libraries used ( I think, :-)), so 
 
  If you find any bug, feel free to report it on github or just throw me an email. 
 
- **Please Note** This program is released under GPL2.0, however, manifold ranking algorithm itself have been patented by OMRON co., Japan, my employer, so please don't use it in any commercial product. 
+ **Please Note** This program is released under GPL2.0, however, manifold ranking algorithm itself have been patented by OMRON co., Japan, my previous employer, so please don't use it in any commercial product. 
 
 # Other Resources #
 
