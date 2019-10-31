@@ -9,7 +9,7 @@
 ##             my previous employer, so please do not use the algorithm in
 ##             any commerical product
 ## Version:
-##       1.0
+##       1.01
 ##
 ## ----------------------------------------------------------------
 ## A python implementation of manifold ranking saliency
@@ -33,11 +33,12 @@ import cv2
 from skimage.segmentation import slic
 from skimage.segmentation import mark_boundaries
 from skimage.data import camera
-from scipy.linalg import inv
+from scipy.linalg import pinv
 import matplotlib.pyplot as plt
 
 cv_ver = int(cv2.__version__.split('.')[0])
 _cv2_LOAD_IMAGE_COLOR = cv2.IMREAD_COLOR if cv_ver >= 3 else cv2.CV_LOAD_IMAGE_COLOR
+
 
 class MR_saliency(object):
     """Python implementation of manifold ranking saliency"""
@@ -116,7 +117,7 @@ class MR_saliency(object):
 
     def __MR_affinity_matrix(self,img,labels):        
         W,D = self.__MR_W_D_matrix(img,labels)
-        aff = inv(D-self.weight_parameters['alpha']*W)
+        aff = pinv(D-self.weight_parameters['alpha']*W)
         aff[sp.eye(sp.amax(labels)+1).astype(bool)] = 0.0 # diagonal elements to 0
         return aff
 
